@@ -1,0 +1,28 @@
+jobs:
+  unittest_web_backend:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: Set up Python v3.10.12
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10.12
+      - name: install poetry
+        run: |
+          python install pip
+      - name: install dependencies
+        run: pip install --no-cache-dir --upgrade -r /requirements.txt
+        working-directory: ./app
+      - name: run unittest
+        run: |
+          PWD=$(pwd)
+          export PYTHONPATH="${PYTHONPATH}:${PWD}"
+          pip3 install -U coverage
+          coverage run -m pytest ./app/main.py
+        # working-directory: ./
+      - name: Store Coverage file
+        uses: actions/upload-artifact@v3
+        with:
+          name: artifact
+          path: .coverage
