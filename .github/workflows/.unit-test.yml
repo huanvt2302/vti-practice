@@ -26,7 +26,7 @@ jobs:
         run: |
           PWD=$(pwd)
           export PYTHONPATH="${PYTHONPATH}:${PWD}"
-          pip3 install -U coverage
+          pip install -U coverage
           coverage run -m pytest app
         working-directory: ./
       - name: Store Coverage file
