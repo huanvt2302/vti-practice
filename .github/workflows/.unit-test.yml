@@ -20,7 +20,7 @@ jobs:
           python -m ensurepip --default-pip
           python -m pip install --upgrade pip
       - name: install dependencies
-        run: pip install --no-cache-dir --upgrade -r /requirements.txt
+        run: pip install --no-cache-dir --upgrade -r requirements.txt
         working-directory: ./app
       - name: run unittest
         run: |
