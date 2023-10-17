@@ -1,3 +1,10 @@
+name: vti-test
+
+on:
+  push:
+    branches:
+    - '*'
+
 jobs:
   unittest_web_backend:
     runs-on: ubuntu-20.04
