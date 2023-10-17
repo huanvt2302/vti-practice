@@ -27,7 +27,7 @@ jobs:
           PWD=$(pwd)
           export PYTHONPATH="${PYTHONPATH}:${PWD}"
           pip3 install -U coverage
-          coverage run -m pytest ./app/main.py
+          coverage run -m pytest app
         working-directory: ./
       - name: Store Coverage file
         uses: actions/upload-artifact@v3
