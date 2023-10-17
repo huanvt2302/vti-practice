@@ -17,7 +17,7 @@ jobs:
           python-version: 3.10.12
       - name: install poetry
         run: |
-          python install pip
+          python3 install pip
       - name: install dependencies
         run: pip install --no-cache-dir --upgrade -r /requirements.txt
         working-directory: ./app
