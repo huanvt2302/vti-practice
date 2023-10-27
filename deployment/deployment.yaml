@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-my-app-vti
+spec:
+  containers:
+    - name: vti-2303
+      image: huanvt2302/vti-2303-backend:v1
+      resources:
+        limits:
+          memory: 512Mi
+          cpu: "1"
+        requests:
+          memory: 256Mi
+          cpu: "0.2"
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-my-app-vti
+  labels:
+    app: my-app-vti
+    revision: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: deployment-my-app-vti
+  template:
+    metadata:
+      labels:
+        app: deployment-my-app-vti
+        revision: v1
+    spec:
+      containers:
+      - name: vti-2303-backend
+        image: huanvt2302/vti-2303-backend:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5000
